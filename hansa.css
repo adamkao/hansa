@@ -1,0 +1,27 @@
+#main {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 320px;
+	height: 300px;
+}
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+textarea {
+	resize: none;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Georgia;
+	font-size: 16px;
+}
+input {
+	font-family: Georgia;
+	font-size: 16px
+}
+
+input[type="number"] {
+   width:50px;
+}
+
