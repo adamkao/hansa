@@ -53,3 +53,5 @@ if (isset($_POST['action']) and $_POST['action'] == 'setwinners')
   }
   exit ('setwinners success!');
 }
+
+?>
