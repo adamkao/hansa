@@ -32,8 +32,6 @@ function creategame( exp, players ) {
 		exp: exp,
 		players: players
 	}, function( data ) {
-				$( '#output' ).val( data );
-
 		obj = $.parseJSON( data );
 		gameid = parseInt( obj[0] );
 		$( '#gameid' ).val( parseInt( obj[0] ) );
