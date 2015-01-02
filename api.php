@@ -6,7 +6,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'creategame')
   $parray = (isset( $_POST['players']) ) ? $_POST['players'] : NULL;
   $pcount = sizeof( $parray );
   if ($pcount < 3) {
-    exit (json_encode( 'not enough players' ));
+    exit ('not enough players');
   }
   for ($i = $pcount; $i < 5; $i++) {
     $parray[$i] = NULL;
@@ -20,7 +20,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'creategame')
     . '(players, player1, player2, player3, player4, player5, expansion) '
     . 'VALUES (?, ?, ?, ?, ?, ?, ?);' );
   if (!$stmt->execute( array( $pcount, $parray[0], $parray[1], $parray[2], $parray[3], $parray[4], $exp ) )) {
-    exit (json_encode( 'INSERT failed' ));
+    exit ('INSERT failed');
   }
   $id = $DBH->lastInsertID();
   $stmt = $DBH->prepare( 'SELECT timestamp FROM hansagamesrecord WHERE id = ?' );
@@ -36,7 +36,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'setwinners')
   $warray = (isset( $_POST['winners']) ) ? $_POST['winners'] : NULL;
   $wcount = sizeof( $warray );
   if ($wcount < 1) {
-    exit (json_encode( 'no winner' ));
+    exit ('no winner');
   }
   for ($i = $wcount; $i < 5; $i++) {
     $warray[$i] = NULL;
@@ -49,7 +49,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'setwinners')
   $stmt = $DBH->prepare( 'UPDATE hansagamesrecord '
     . 'SET winner1 = ?, winner2 = ?, winner3 = ?, winner4 = ?, winner5 = ? WHERE id = ?;' );
   if (!$stmt->execute( array( $warray[0], $warray[1], $warray[2], $warray[3], $warray[4], $gameid ) )) {
-    exit (json_encode( 'UPDATE failed' ));
+    exit ('UPDATE failed');
   }
-  exit (json_encode( 'setwinners success!' ));
+  exit ('setwinners success!');
 }
