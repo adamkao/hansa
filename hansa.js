@@ -44,6 +44,7 @@ function creategame( exp, players ) {
 				$( '#' + i ).val( '' );
 			}
 		}
+		$( '#creategame' ).prop( 'disabled', true );
 		$( '#setwinners' ).prop( 'disabled', false );
 	}).fail( function() {
 		alert( "POST creategame failed." );
@@ -68,6 +69,7 @@ function setwinners() {
 		gameid: gameid,
 		winners: winners
 	}, function( data ) {
+		$( '#creategame' ).prop( 'disabled', false );
 		$( '#setwinners' ).prop( 'disabled', true );
 		$( '.win' ).prop( 'disabled', true );
 		$( '.win' ).removeAttr( 'checked' );
@@ -79,7 +81,7 @@ function setwinners() {
 }
 
 $( document ).ready( function() {
-	$( '#go' ).click( function( e ) {
+	$( '#creategame' ).click( function( e ) {
 		gameid = 0;
 		output = '';
 		lines = [ '1', '2', '3', '4', '5' ];
@@ -89,7 +91,6 @@ $( document ).ready( function() {
 			if ($( '#play' + lines[i] ).is( ':checked' )) {
 				player = $( '#' + lines[i] ).val();
 				players.push( player );
-				output += player + '\n';
 			}
 		}
 		if (players.length < 3) {
