@@ -6,11 +6,14 @@
 	height: 300px;
 	overflow: hidden;
 }
-#left {
+#panner {
 	position: relative;
 }
-#swiperight {
+.swipe {
 	height:120px;
+}
+.screen {
+	width: 310px;
 }
 td {
 	text-align: center;
