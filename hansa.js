@@ -132,14 +132,20 @@ $( document ).ready( function() {
 	} );
 	$( '#statsplayer' ).on( 'keydown', function( event ) {
 		if ((event.which == 10) || (event.which == 13)) {
-	$.get('api.php', {
-		action: 'getstats',
-		player: $( '#statsplayer' ).val()
-	}, function( data ) {
-		$( '#routput' ).val( data );
-	}).fail( function() {
-		alert( "GET stats failed." );
-	});
+			$.get('api.php', {
+				action: 'getstats',
+				player: $( '#statsplayer' ).val()
+			}, function( data ) {
+				retarr = $.parseJSON( data );
+				$( '#routput' ).val( 'Wins: ' + retarr[0]
+					+ '\n1st: ' + retarr[1]
+					+ '\n2nd: ' + retarr[2]
+					+ '\n3rd: ' + retarr[3]
+					+ '\n4th: ' + retarr[4]
+					+ '\n5th: ' + retarr[5] );
+			}).fail( function() {
+				alert( "GET stats failed." );
+			});
 		}
 	} );
 } );

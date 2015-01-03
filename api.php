@@ -65,10 +65,47 @@ if (isset($_GET['action']) and $_GET['action'] == 'getstats')
   $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE '
     . 'winner1 = ? OR winner2 = ? OR winner3 = ? OR winner4 = ? OR winner5 = ?;' );
   if (!$stmt->execute( array( $player, $player, $player, $player, $player ) )) {
-    exit ('GET winners failed');
+    exit ('GET wins failed');
   }
   $rows = $stmt->fetchAll();
-  exit ($rows[0][0]);
+  $wins = $rows[0][0];
+
+  $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE player1 = ?;' );
+  if (!$stmt->execute( array( $player ) )) {
+    exit ('GET player1 failed');
+  }
+  $rows = $stmt->fetchAll();
+  $p1 = $rows[0][0];
+
+  $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE player2 = ?;' );
+  if (!$stmt->execute( array( $player ) )) {
+    exit ('GET player2 failed');
+  }
+  $rows = $stmt->fetchAll();
+  $p2 = $rows[0][0];
+
+  $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE player3 = ?;' );
+  if (!$stmt->execute( array( $player ) )) {
+    exit ('GET player3 failed');
+  }
+  $rows = $stmt->fetchAll();
+  $p3 = $rows[0][0];
+
+  $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE player4 = ?;' );
+  if (!$stmt->execute( array( $player ) )) {
+    exit ('GET player4 failed');
+  }
+  $rows = $stmt->fetchAll();
+  $p4 = $rows[0][0];
+
+  $stmt = $DBH->prepare( 'SELECT COUNT(*) FROM hansagamesrecord WHERE player5 = ?;' );
+  if (!$stmt->execute( array( $player ) )) {
+    exit ('GET player5 failed');
+  }
+  $rows = $stmt->fetchAll();
+  $p5 = $rows[0][0];
+
+  exit (json_encode( array( $wins, $p1, $p2, $p3, $p4, $p5 ) ));
 }
 
 ?>
