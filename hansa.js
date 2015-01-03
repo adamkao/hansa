@@ -130,4 +130,16 @@ $( document ).ready( function() {
 			event.preventDefault();			
 		}
 	} );
+	$( '#statsplayer' ).on( 'keydown', function( event ) {
+		if ((event.which == 10) || (event.which == 13)) {
+	$.get('api.php', {
+		action: 'getstats',
+		player: $( '#statsplayer' ).val()
+	}, function( data ) {
+		$( '#routput' ).val( data );
+	}).fail( function() {
+		alert( "GET stats failed." );
+	});
+		}
+	} );
 } );
