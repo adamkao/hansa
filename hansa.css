@@ -2,8 +2,20 @@
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	width: 320px;
-	height: 300px;
+	width: 360px;
+	overflow: hidden;
+}
+#panner {
+	position: relative;
+}
+#gameid {
+	text-align: right;
+}
+.swipe {
+	height:120px;
+}
+.screen {
+	width: 360px;
 }
 td {
 	text-align: center;
@@ -20,8 +32,3 @@ input {
 	font-family: Georgia;
 	font-size: 16px
 }
-
-input[type="number"] {
-   width:50px;
-}
-

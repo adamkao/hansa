@@ -44,6 +44,7 @@ function creategame( exp, players ) {
 				$( '#' + i ).val( '' );
 			}
 		}
+		$( '#creategame' ).prop( 'disabled', true );
 		$( '#setwinners' ).prop( 'disabled', false );
 	}).fail( function() {
 		alert( "POST creategame failed." );
@@ -68,16 +69,29 @@ function setwinners() {
 		gameid: gameid,
 		winners: winners
 	}, function( data ) {
+		$( '#creategame' ).prop( 'disabled', false );
 		$( '#setwinners' ).prop( 'disabled', true );
 		$( '.win' ).prop( 'disabled', true );
+		$( '.win' ).removeAttr( 'checked' );
+		$( '.play' ).prop( 'disabled', false );
 		$( '#output' ).val( data );
 	}).fail( function() {
 		alert( "POST setwinners failed." );
 	});
 }
 
+function swiperight() {
+	$( '#panner' ).animate( { right: '+=360' }, 100, function() {
+	})
+}
+function swipeleft() {
+	$( '#panner' ).animate( { right: '-=360' }, 100, function() {
+	})
+}
+
 $( document ).ready( function() {
-	$( '#go' ).click( function( e ) {
+	var gameidlen = 0;
+	$( '#creategame' ).click( function( e ) {
 		gameid = 0;
 		output = '';
 		lines = [ '1', '2', '3', '4', '5' ];
@@ -87,18 +101,51 @@ $( document ).ready( function() {
 			if ($( '#play' + lines[i] ).is( ':checked' )) {
 				player = $( '#' + lines[i] ).val();
 				players.push( player );
-				output += player + '\n';
 			}
 		}
 		if (players.length < 3) {
 			alert( 'not enough players' );
 			return false;
 		}
+		output = players.join( '\n' );
 		$( '#output' ).val( output );
 		for (i = lines.length; i < 5; i++) {
 			players.push( 'NULL' );
 		}
 		exp = $( '#expansion' ).val();
 		creategame( exp, players );
+	} );
+	$( '#gameid' ).on( 'keydown', function( event ) {
+		if ((event.which > 47) && (event.which < 58)) {
+			if (gameidlen < 3) {
+				gameidlen++;
+			} else {
+				event.preventDefault();			
+			}
+		} else if ((event.which == 10) || (event.which == 13)) {
+			// enter key
+		} else if (event.which == 8) {
+			gameidlen--;
+		} else {
+			event.preventDefault();			
+		}
+	} );
+	$( '#statsplayer' ).on( 'keydown', function( event ) {
+		if ((event.which == 10) || (event.which == 13)) {
+			$.get('api.php', {
+				action: 'getstats',
+				player: $( '#statsplayer' ).val()
+			}, function( data ) {
+				retarr = $.parseJSON( data );
+				$( '#routput' ).val( 'Wins: ' + retarr[0]
+					+ '\n1st: ' + retarr[1]
+					+ '\n2nd: ' + retarr[2]
+					+ '\n3rd: ' + retarr[3]
+					+ '\n4th: ' + retarr[4]
+					+ '\n5th: ' + retarr[5] );
+			}).fail( function() {
+				alert( "GET stats failed." );
+			});
+		}
 	} );
 } );
