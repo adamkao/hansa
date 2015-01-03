@@ -1,4 +1,4 @@
-var i, gameid = 0, output = '', lines = [ '1', '2', '3', '4', '5' ], players = [];
+var i, gameid = 0, output = '', lines = [ '#1', '#2', '#3', '#4', '#5' ], players = [];
 
 function shuffle( array ) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
