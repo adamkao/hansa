@@ -1,4 +1,4 @@
-var i, gameid = 0, output = '', lines = [ '#1', '#2', '#3', '#4', '#5' ], players = [];
+var i, gameid = 0, output = '', lines = [ '1', '2', '3', '4', '5' ], players = [];
 
 function shuffle( array ) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -70,6 +70,8 @@ function setwinners() {
 	}, function( data ) {
 		$( '#setwinners' ).prop( 'disabled', true );
 		$( '.win' ).prop( 'disabled', true );
+		$( '.win' ).removeAttr( 'checked' );
+		$( '.play' ).prop( 'disabled', false );
 		$( '#output' ).val( data );
 	}).fail( function() {
 		alert( "POST setwinners failed." );
@@ -94,6 +96,7 @@ $( document ).ready( function() {
 			alert( 'not enough players' );
 			return false;
 		}
+		output = players.join( '\n' );
 		$( '#output' ).val( output );
 		for (i = lines.length; i < 5; i++) {
 			players.push( 'NULL' );
