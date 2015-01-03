@@ -81,15 +81,16 @@ function setwinners() {
 }
 
 function swiperight() {
-	$( '#panner' ).animate( { right: '+=320' }, 100, function() {
+	$( '#panner' ).animate( { right: '+=360' }, 100, function() {
 	})
 }
 function swipeleft() {
-	$( '#panner' ).animate( { right: '-=320' }, 100, function() {
+	$( '#panner' ).animate( { right: '-=360' }, 100, function() {
 	})
 }
 
 $( document ).ready( function() {
+	var gameidlen = 0;
 	$( '#creategame' ).click( function( e ) {
 		gameid = 0;
 		output = '';
@@ -113,5 +114,20 @@ $( document ).ready( function() {
 		}
 		exp = $( '#expansion' ).val();
 		creategame( exp, players );
+	} );
+	$( '#gameid' ).on( 'keydown', function( event ) {
+		if ((event.which > 47) && (event.which < 58)) {
+			if (gameidlen < 3) {
+				gameidlen++;
+			} else {
+				event.preventDefault();			
+			}
+		} else if ((event.which == 10) || (event.which == 13)) {
+			// enter key
+		} else if (event.which == 8) {
+			gameidlen--;
+		} else {
+			event.preventDefault();			
+		}
 	} );
 } );

@@ -14,11 +14,10 @@
 			<table>
 				<tr>
 					<td>
-						<table class='screen'>
+						<table>
 							<tr>
 								<td><textarea id='timestamp' cols='18' rows='1' readonly='readonly'></textarea></td>
-								<td><input id='gameid' type='number' size='4' disabled></td>
-								<td><button id='getgame' disabled>Get</button></td>
+								<td><input id='gameid' type='text' size='2'></td>
 							</tr>
 						</table>
 						<table class='screen'>
@@ -61,11 +60,9 @@
 								</table></td>
 								<td><button class='swipe' onclick='swiperight()'>></button></td>
 							</tr>
-							<tr>
-								<td><button id='creategame'>Create Game</button></td>
-								<td><button id='setwinners' onclick='setwinners()' disabled>Set Winners</button></td>
-							</tr>
 						</table>
+						<button id='creategame'>Create Game</button>
+						<button id='setwinners' onclick='setwinners()' disabled>Set Winners</button>
 					</td>
 					<td>
 						<table class='screen'>
