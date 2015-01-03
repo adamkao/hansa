@@ -4,6 +4,13 @@
 	right: 0;
 	width: 320px;
 	height: 300px;
+	overflow: hidden;
+}
+#left {
+	position: relative;
+}
+#swiperight {
+	height:120px;
 }
 td {
 	text-align: center;

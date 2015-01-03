@@ -80,6 +80,11 @@ function setwinners() {
 	});
 }
 
+function swiperight() {
+	$( '#left' ).animate( { right: '+=320' }, 100, function() {
+
+	})
+}
 $( document ).ready( function() {
 	$( '#creategame' ).click( function( e ) {
 		gameid = 0;

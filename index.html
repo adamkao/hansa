@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div id='main'>
+	<div id = 'left'>
 		<table>
 			<tr>
 				<td><textarea id='timestamp' cols='18' rows='1' readonly='readonly'></textarea></td>
@@ -55,12 +56,14 @@
 						<input id='win5' class='win' type='checkbox' onchange='togglewin( "#5win" )' disabled>
 					</td></tr>
 				</table></td>
+				<td><button id='swiperight' onclick='swiperight()'>></button></td>
 			</tr>
 			<tr>
 				<td><button id='creategame'>Create Game</button></td>
 				<td><button id='setwinners' onclick='setwinners()' disabled>Set Winners</button></td>
 			</tr>
 		</table>
+	</div>
 	</div>
 </body>
 </html>
