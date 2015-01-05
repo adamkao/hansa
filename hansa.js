@@ -1,4 +1,4 @@
-var gameid = 0, output = '', lines = [ '1', '2', '3', '4', '5' ], players = [];
+var i, gameid = 0, output = '', lines = [ '1', '2', '3', '4', '5' ], players = [];
 
 function shuffle( array ) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -81,10 +81,12 @@ function setwinners() {
 }
 
 function swiperight() {
-	$( '#panner' ).animate( { right: '+=360' }, 100, function() {} )
+	$( '#panner' ).animate( { right: '+=360' }, 100, function() {
+	})
 }
 function swipeleft() {
-	$( '#panner' ).animate( { right: '-=360' }, 100, function() {} )
+	$( '#panner' ).animate( { right: '-=360' }, 100, function() {
+	})
 }
 
 $( document ).ready( function() {
