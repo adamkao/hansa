@@ -1,4 +1,4 @@
-var i, gameid = 0, output = '', lines = [ '1', '2', '3', '4', '5' ], players = [];
+var gameid = 0;
 
 function shuffle( array ) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -32,9 +32,10 @@ function creategame( exp, players ) {
 		exp: exp,
 		players: players
 	}, function( data ) {
-		obj = $.parseJSON( data );
+		var i = 0, obj = $.parseJSON( data );
+
 		gameid = parseInt( obj[0] );
-		$( '#gameid' ).val( parseInt( obj[0] ) );
+		$( '#gameid' ).val( gameid );
 		$( '#timestamp' ).val( ( obj[1] ) );
 		$( '.play' ).prop( 'disabled', true );
 		for (i = 1; i <= 5; i++) {
@@ -52,12 +53,11 @@ function creategame( exp, players ) {
 }
 
 function setwinners() {
-	var i, output = '', winners = [];
+	var i = 0, winners = [];
 	for (i = 1; i <= 5; i++) {
 		if ($( '#win' + i ).is( ':checked' )) {
 			winner = $( '#' + i ).val();
 			winners.push( winner );
-			output += winner + '\n';
 		}
 	}
 	if (winners.length < 1) {
@@ -74,28 +74,24 @@ function setwinners() {
 		$( '.win' ).prop( 'disabled', true );
 		$( '.win' ).removeAttr( 'checked' );
 		$( '.play' ).prop( 'disabled', false );
-		$( '#output' ).val( data );
 	}).fail( function() {
 		alert( "POST setwinners failed." );
 	});
 }
 
 function swiperight() {
-	$( '#panner' ).animate( { right: '+=360' }, 100, function() {
-	})
+	$( '#panner' ).animate( { right: '+=360' }, 100, function() {} )
 }
 function swipeleft() {
-	$( '#panner' ).animate( { right: '-=360' }, 100, function() {
-	})
+	$( '#panner' ).animate( { right: '-=360' }, 100, function() {} )
 }
 
 $( document ).ready( function() {
 	var gameidlen = 0;
+
 	$( '#creategame' ).click( function( e ) {
+		var i = 0, player, players = [], lines = [ '1', '2', '3', '4', '5' ];
 		gameid = 0;
-		output = '';
-		lines = [ '1', '2', '3', '4', '5' ];
-		players = [];
 		shuffle( lines );
 		for (i = 0; i < lines.length; i++) {
 			if ($( '#play' + lines[i] ).is( ':checked' )) {
@@ -107,13 +103,8 @@ $( document ).ready( function() {
 			alert( 'not enough players' );
 			return false;
 		}
-		output = players.join( '\n' );
-		$( '#output' ).val( output );
-		for (i = lines.length; i < 5; i++) {
-			players.push( 'NULL' );
-		}
-		exp = $( '#expansion' ).val();
-		creategame( exp, players );
+		$( '#output' ).val( players.join( '\n' ) );
+		creategame( $( '#expansion' ).val(), players );
 	} );
 	$( '#gameid' ).on( 'keydown', function( event ) {
 		if ((event.which > 47) && (event.which < 58)) {
