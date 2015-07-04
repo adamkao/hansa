@@ -27,7 +27,7 @@ function togglewin( id )
 }
 
 function creategame( exp, players ) {
-	$.post('api.php', {
+	$.post( 'api.php', {
 		action: 'creategame',
 		exp: exp,
 		players: players
@@ -38,6 +38,7 @@ function creategame( exp, players ) {
 		$( '#gameid' ).val( gameid );
 		$( '#timestamp' ).val( ( obj[1] ) );
 		$( '.play' ).prop( 'disabled', true );
+		$( '.name' ).prop( 'disabled', true );
 		for (i = 1; i <= 5; i++) {
 			if ($( '#play' + i ).is( ':checked' )) {
 				$( '#win' + i ).prop( 'disabled', false );
@@ -47,13 +48,13 @@ function creategame( exp, players ) {
 		}
 		$( '#creategame' ).prop( 'disabled', true );
 		$( '#setwinners' ).prop( 'disabled', false );
-	}).fail( function() {
+	} ).fail( function() {
 		alert( "POST creategame failed." );
-	});
+	} );
 }
 
 function setwinners() {
-	var i = 0, winners = [];
+	var i = 0, winners = [], nametext;
 	for (i = 1; i <= 5; i++) {
 		if ($( '#win' + i ).is( ':checked' )) {
 			winner = $( '#' + i ).val();
@@ -64,7 +65,7 @@ function setwinners() {
 		alert( 'no winner' );
 		return false;
 	}
-	$.post('api.php', {
+	$.post( 'api.php', {
 		action: 'setwinners',
 		gameid: gameid,
 		winners: winners
@@ -74,9 +75,16 @@ function setwinners() {
 		$( '.win' ).prop( 'disabled', true );
 		$( '.win' ).removeAttr( 'checked' );
 		$( '.play' ).prop( 'disabled', false );
-	}).fail( function() {
+		$( '#play1' ).prop( 'disabled', true );
+		for (i = 2; i < 6; i++) {
+			nametext = $( '#' + i );
+			if (nametext.val().length) {
+				nametext.prop( 'disabled', false )
+			}
+		}
+	} ).fail( function() {
 		alert( "POST setwinners failed." );
-	});
+	} );
 }
 
 function swiperight() {
