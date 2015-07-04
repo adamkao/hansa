@@ -9,6 +9,7 @@ select {
 }
 input {
 	border-width: 0 0 0 1px;
+	padding-left: 2px;
 }
 .swipe {
 	height: 120px;
