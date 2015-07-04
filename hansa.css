@@ -15,7 +15,7 @@ input {
 	height: 120px;
 }
 .screen {
-	width: 360px;
+	width: 300px;
 }
 .rt {
 	text-align: right;
@@ -31,12 +31,12 @@ div.block {
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	width: 360px;
+	width: 300px;
 	overflow: hidden;
 }
 #panner {
 	position: relative;
-	width: 800px;
+	width: 640px;
 }
 #gameid {
 	text-align: right;
