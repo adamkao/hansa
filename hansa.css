@@ -1,34 +1,43 @@
+textarea {
+	border: none;
+	resize: none;
+	text-align: center;
+	vertical-align: middle;
+}
+select {
+	border: none;
+}
+input {
+	border-width: 0 0 0 1px;
+	padding-left: 2px;
+}
+.swipe {
+	height: 120px;
+}
+.screen {
+	width: 300px;
+}
+.rt {
+	text-align: right;
+}
+.lf {
+	text-align: left;
+}
+div.block {
+	display: inline-block;
+	vertical-align: middle;
+}
 #main {
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	width: 360px;
+	width: 300px;
 	overflow: hidden;
 }
 #panner {
 	position: relative;
+	width: 640px;
 }
 #gameid {
 	text-align: right;
-}
-.swipe {
-	height:120px;
-}
-.screen {
-	width: 360px;
-}
-td {
-	text-align: center;
-	vertical-align: middle;
-}
-textarea {
-	resize: none;
-	text-align: center;
-	vertical-align: middle;
-	font-family: Georgia;
-	font-size: 16px;
-}
-input {
-	font-family: Georgia;
-	font-size: 16px
 }
