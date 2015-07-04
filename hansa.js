@@ -96,7 +96,12 @@ $( document ).ready( function() {
 		for (i = 0; i < lines.length; i++) {
 			if ($( '#play' + lines[i] ).is( ':checked' )) {
 				player = $( '#' + lines[i] ).val();
-				players.push( player );
+				if (player.length) {
+					players.push( player );
+				} else {
+					alert( 'blank player name' );
+					return false;
+				}
 			}
 		}
 		if (players.length < 3) {
